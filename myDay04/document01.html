@@ -1,0 +1,58 @@
+<!-- 
+    DOM(Document Object Medel) 객체
+    HTML 태그들을 하나씩 객체화 한 것.
+    HTML 페이지의 내용과 모양을 제어하기 위해 사용되는 객체이다.
+    HTML 태그 당 DOM 객체가 하나씩 생성된다.
+    HTML 태그의 포함관계에 따라서 부모, 자식, 형제자매 관계로 구성된다.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 이름을 이용한 선택</title>
+</head>
+<body>
+    <h1>클래스 이름을 이용한 선택</h1>
+    <u1>
+        <li class="odd">첫 번째 아이템이예요!</li>
+        <li class="even">두 번째 아이템이예요!</li>
+        <li class="odd">세 번째 아이템이예요!</li>
+        <li class="even">네 번째 아이템이예요!</li>
+        <li class="odd">다섯 번째 아이템이예요!</li>
+    </u1>
+</body>
+<script>
+    // console.log(document.getElementsByClassName("odd"));
+    const listsOdd = document.getElementsByClassName("odd");//dom은 항상 const
+    const listsEven = document.getElementsByClassName("even");
+    console.log(listsOdd);
+    HTMLCollection.prototype.forEach = Array.prototype.forEach;
+    listsOdd.forEach(list => list.style.color = 'red');
+    // in 뒤에 있는 자료구조의 key값을 i 에 담을 수 있다.
+    // for(let i in listsOdd){
+    //     console.log(listsOdd.length)
+    //     console.log("안녕2")
+    //     console.log(i)
+    //     listsOdd[i].style.color = 'red';
+    // }
+    // of뒤에 있는 자료구조의 value값을 list에 담을 수 있다.(자바에서 빠른for문)
+    // for(let list of listsOdd){
+    //     list.style.color = 'red';
+    // }
+    
+    // 짝수는 초록색으로 바꾸기
+    
+    // for(let i in listsEven){
+    //     listsEven[i].style.color = 'green';
+    // }
+    // console.log("안녕1")
+    // for (let list1 of listsEven) {
+    //     console.log("안녕2");
+    //     console.log(list1);
+    //     list1.style.color = 'green';
+    // }
+</script>
+</html>

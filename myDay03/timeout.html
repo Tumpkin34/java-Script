@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout()</title>
+</head>
+<body>
+    <h1>지정된 시간이 흐른 후에 함수 실행</h1>    
+</body>
+<script>
+    // 무한 반복한다.
+    while(true){
+        // setTimeout : 자바에서 Thread.sleep과 같은 역할
+        setTimeout(function(){
+            // 내용
+            document.write("<p>황지수</p>")
+            // 1000밀리초(1초) 후에 내용 실행
+        },1000);
+    }
+</script>
+</html>

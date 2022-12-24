@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사이트 이동</title>
+</head>
+<body>
+    <form action="" name="myForm">
+        <label>
+            무신사
+            <input type="radio" name="site" value="musinsa">
+        </label>
+        <label>
+            쿠팡
+            <input type="radio" name="site" value="cupang">
+        </label>
+        <label>
+            네이버
+            <input type="radio" name="site" value="naver">
+        </label>
+        <label>
+            하이버
+            <input type="radio" name="site" value="hiver">
+        </label>
+        <div>
+            <input type="button" value="이동" onclick="send()">
+        </div>
+    </form>
+</body>
+<script>
+
+    with(console){
+        // href : 페이지의 URL 전체 정보 반환, URL을 지정하여 페이지 이동 가능.
+        // http://100.0.0.1:5500/day06/locationTest.html
+        log(location.href);
+        // pathname : URL 중 경로 부분의 정보를 반환한다.
+        // /day06/locationTest.html
+        log(location.pathname);
+        // port : 포트번호를 반환한다.
+        // 5500
+        log(location.port);
+    }
+
+    function send(){
+        if(!myForm.site.value){
+            alert("사이트를 선택해주세요.");
+            return;
+        }
+
+        let url;
+
+        // form 태그에 name의 속성값으로 form을 객체로 쓸 수 있다.
+        switch(myForm.site.value){
+            case 'musinsa':
+                url = 'https://www.musinsa.com/app/'
+                break;
+            case 'cupang':
+                url = 'https://www.coupang.com/'
+                break;
+            case 'naver':
+                url = 'https://www.naver.com/'
+                break;
+            case 'hiver':
+                url = 'https://www.hiver.co.kr/'
+                break;
+        }
+
+        // 밑에 두개코드다 현재 URL을 지정한 URL로 바꿔서 페이지 이동
+        location.href = url;
+        // location.assign(url);
+
+        // 현재 URL을 지정한 URL로 바꾸고 이전 페이지로 돌아갈 수 없게 한다.
+        // location.replace(url);
+    }
+
+</script>
+</html>

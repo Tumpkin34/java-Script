@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="p1.css">
+</head>
+
+<body>
+        <section class="cantainer">
+                <div class="banner">
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0825/main_bn_220825_5E44F031BEF8ABA7.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0825/main_bn_220825_7D5A5D12A77D205A.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0825/main_bn_220825_D4768W2IC30WW3O0.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0812/main_bn_220812_98B14A950227409A.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0311/main_bn_220308_22R6K8MG5O8FKX3V.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0630/main_bn_220630_11543EC8X7O5E20K.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0826/main_bn_220826_C23102WE0V1CTQ50.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0908/main_bn_220310_659EDD3B5E9ED26A.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0825/main_bn_220825_99BAEC1B8F8A7D1B.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0113/main_bn_220113_7C33P42WS640P057.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0831/main_bn_220831_9BB933AC125F8910.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0908/main_bn_220908_583LES87WO77417.jpg"
+                                        alt="">
+                        </div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0902/main_bn_220902_T3SJ62RIVNVQ6DY2.jpg"
+                                        alt=""></div>
+                        <div><img src="https://lwi.nexon.com/maplestory/banner/2022/0818/main_bn_220818_1C6C95462DCACEB3.jpg"
+                                        alt=""></div>
+                </div>
+        </section>
+</body>
+<script>
+        const banners = document.getElementsByClassName("banner")[0];
+        banners.style.transform = "translate(0vw)";
+        banners.style.transition = "transform 0.5s";
+        let number = 0;
+        let inter = setInterval(function () {
+                number++;
+                banners.style.transform = "translate(-" + 90 * number + "vw)";
+                if (number % 14 == 0) {
+                        number = 0;
+                }
+
+        }, 100)
+</script>
+
+</html>

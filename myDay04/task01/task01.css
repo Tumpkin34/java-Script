@@ -1,0 +1,44 @@
+/* .fullScreen{
+    width: 50%;
+    margin: 0 auto;
+} */
+
+main{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.headerTextBox{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+table{
+    width: 100%;
+}
+
+.cellHeader{
+    background-color: yellow;
+}
+
+tr{
+    text-align: center;
+}
+
+.inputBox{
+    height: 50px;
+    width: 55%;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.checkBox-box{
+    display: flex;
+    width: 50%;
+    margin: 15px auto;
+}
+
+#input{
+    margin-right: 5px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: bisque;
+            font-family: 'Hi Melody', cursive;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.5rem;
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <h1>구구단</h1>
+    <h3>입력받은 단 출력</h3>
+    <hr>
+</body>
+<script>
+    /* 사용자에게 단 수를 입력받은 후 해당 구구단 출력 */
+    /* 결과는 body태그 안에 출력한다. */
+
+    while(true){
+        var input = prompt("단 : ");//prompt를 통해 사용자에게 값을 입력 받아 저장함
+        let dan = parseInt(input);//저장된 값을 정수로 바꿔봄 정수로 바꾸지 못하는 문자라면 NaN을 리턴
+        if(printGugudan(dan)) {break;}//구구단을 출력했다면 실행 구구단을 출력못했다면 실행 못함
+    }
+
+    function printGugudan(dan){
+        // 만약 받아온dan이 정수로 바꿀 수 없는 값이 었다면 input - dan의 결과는 NaN이다
+        // NaN이 0.0과 같지 않아서 false지만 !이기 때문에 true
+        // dan은 parseInt때문에 정수이기 때문에 input에 실수를 입력했다면 0.0이 될 수 없다.
+        var check = input - dan != 0.0;
+        // 사용자가 입력한 문자가 1~9범위를 벗어났을 때 true
+        var rangeCondition = dan < 1 || dan > 9;
+        // if문 안에 하나라도 false가 있으면 false
+        if(isNaN(dan) || check || rangeCondition){
+            alert("다시 입력해주세요.");
+            return false;
+        }
+
+        // 구구단 출력
+        for(let i = 1; i < 10; i++){
+            document.write("<p>" + dan + "*" + i + "=" + dan * i + "</p>");
+        }
+
+        return true;
+    }
+</script>
+</html>
+
+

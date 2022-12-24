@@ -1,0 +1,46 @@
+fieldset{
+    border: none;
+    border-top: 4px dashed magenta;
+    font-size: 1.5em;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#round{
+    border: 1px solid magenta;
+    border-radius: 50%;
+    background-color: yellow;
+    width: 50px;
+    height: 50px;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 40px;
+    line-height: 100%;
+    text-align: center;
+}
+
+.result{
+    font-size: 14px;
+}
+
+#inputText {
+    margin: 0 auto;
+    margin-top: 100px;
+    display: block;
+    text-align: center;
+    width: 70%;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+#changeButton{
+    border: none;
+    background-color: magenta;
+    color: white;
+    font-size: 0.8em;
+    margin-top: 5px;
+    width: 15%;   
+    cursor: pointer;
+}

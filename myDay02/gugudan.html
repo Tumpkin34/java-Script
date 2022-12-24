@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+</head>
+
+<body>
+    <h1>구구단</h1>
+    <h3>입력받은 단 출력</h3>
+    <hr>
+</body>
+<script>
+    // 사용자에게 단 수를 입력받은 후 해당 구구단 출력
+    let number = parseInt(prompt("1~9까지의 원하는 숫자를 선택해주세요"));
+    function gugudan(number) {
+        let number = parseInt(number);
+        if (isNaN(number)) {
+            document.write("<p>숫자만 입력해주세요</p>");
+            return;
+        }
+        if (number >= 1 && number <= 9) {
+            document.write("<pre>");
+            for (let i = 1; i < 10; i++) {
+                document.writeln("<p>" + number + " x " + i + " = " + number * i + "</p>");
+            }
+            document.write("</pre>");
+        } else {
+            document.write("<p>범위를 확인해주세요</p>");
+        }
+    }
+    gugudan(number);
+</script>
+
+</html>

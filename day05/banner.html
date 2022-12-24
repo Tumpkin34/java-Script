@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드 배너</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <section class="container">
+        <div class="arrow left prev">&lt;</div>
+        <div class="banner">
+            <div><img src="banner/001.png"></div>
+            <div><img src="banner/002.png"></div>
+            <div><img src="banner/003.png"></div>
+            <div><img src="banner/004.png"></div>
+            <div><img src="banner/005.png"></div>
+            <div><img src="banner/006.png"></div>
+        </div>
+        <div class="arrow right next">&gt;</div>
+        <div class="buttons">
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </div>
+    </section>
+</body>
+<script>
+    // const div = document.querySelector("div.banner");
+    // var count = 0;
+    // setInterval(function(){
+    //     count ++;
+    //     count = count == 6 ? 0 : count;
+    //     div.style.transform = "translate(-" + 90 * count + "vw)";
+    // }, 4000);
+
+    function autoSlide() {
+        // 바뀔 때 0.5초의 시간이 준다.
+        banner.style.transition = "transform 0.5s"
+        // 마지막 슬라이드일 때
+        // 6번 뒤에 1번 배치시킨다.
+        // 6번에서 1번으로 슬라이드 진행
+        // 0s를 줘서 원래 1번 위치로 이동(슬라이드 효과는 안보임)
+
+        count++;
+        // 배너가 6번째에서 1번째 이미지를 보여줄 때
+        if (count == 6) {
+            // 슬라이드가 넘어가면서 전에 버튼의 색을 돌려놓음
+            buttons[count - 1].style.backgroundColor = "#f0f0f0";
+            // 7번째 인덱스로 넘어가고
+            banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+            setTimeout(function () {
+                // 0.5초 후에 7번째 인덱스에서 0번째 인덱스로 바로 넘어간다.
+                banner.style.transition = "transform 0s"
+                banner.style.transform = "translate(-90vw)";
+            }, 500);
+            // 버튼의 번호를 처음으로 초기화하고
+            count = 0;
+            // 0번째 버튼의 색을 검은색으로 바꾼다. 
+            buttons[count].style.backgroundColor = "black";
+        } else {
+            // 다음으로 넘어가면서 전에 지났던 버튼의 색을 원래대로 돌린다.
+            buttons[count - 1].style.backgroundColor = "#f0f0f0";
+            // 현재 이미지에 해당하는 버튼의 색을 검은색으로 바꾼다.
+            buttons[count].style.backgroundColor = "black";
+            // 다음배너로 넘어간다.
+            banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+        }
+        // 버튼의 번호를 저장
+        temp = buttons[count];
+    }
+
+    // 무한 반복 (단방향으로 슬라이드)
+    const banner = document.querySelector("div.banner");
+    const buttons = document.querySelectorAll("div.buttons button");
+    var count = 0, temp = buttons[count];
+    let firstDiv = document.createElement("div");
+    let lastDiv = document.createElement("div");
+
+    // 1번 이미지와 6번 이미지를 배너 목록에 추가
+    firstDiv.innerHTML = `<img src="banner/001.png">`;
+    banner.appendChild(firstDiv);
+
+    lastDiv.innerHTML = `<img src="banner/006.png">`;
+    banner.insertBefore(lastDiv, document.querySelector("div.banner div"));
+
+    // 1번 이미지에 해당 하는 버튼에 색칠
+    buttons[count].style.backgroundColor = "black";
+
+    // 1번 이미지가 보이게 이동
+    banner.style.transform = "translate(-90vw)";
+
+    // 
+    var inter = setInterval(autoSlide, 4000);
+
+    // 원하는 번호의 배너 보기
+    // 각 버튼마다 클릭 이벤트 적용
+    // 막 누르는 걸 막기위한 flag
+    var numberButtonCheck = true;
+    // 버튼 이벤트들에 클릭이벤트 부여
+    buttons.forEach((v, i, btns) => {
+        btns[i].addEventListener("click", function () {
+            banner.style.transition = "transform 0.5s"
+            if (numberButtonCheck) {
+                numberButtonCheck = false;
+                // 버튼을 클릭시 바로 넘어가지 않게 setInterval초기화
+                clearInterval(inter);
+                count = i;
+                temp.style.backgroundColor = "#f0f0f0";
+                buttons[count].style.backgroundColor = "black";
+                banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                temp = buttons[count];
+                inter = setInterval(autoSlide, 4000);
+                setTimeout(function () {
+                    numberButtonCheck = true;
+                }, 500);
+            }
+        });
+    });
+
+    // 이전 버튼, 다음 버튼 구현
+    const arrows = document.querySelectorAll("div.arrow");
+    var arrowButtonCheck = true;
+    arrows.forEach(arrow => {
+        arrow.addEventListener("click", function () {
+            if (arrowButtonCheck) {
+                arrowButtonCheck = false;
+                clearInterval(inter);
+                banner.style.transition = "transform 0.5s"
+                let arrowType = arrow.classList[2];
+                if (arrowType == 'prev') {
+                    count--;
+                    if (count == -1) {
+                        banner.style.transform = "translate(0vw)";
+                        setTimeout(function () {
+                            banner.style.transition = "transform 0s"
+                            banner.style.transform = "translate(-540vw)";
+                        }, 500);
+                        count = 5;
+                    } else {
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                    }
+                } else {
+                    count++;
+                    if (count == 6) {
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                        setTimeout(function () {
+                            banner.style.transition = "transform 0s"
+                            banner.style.transform = "translate(-90vw)";
+                        }, 500);
+                        count = 0;
+                    } else {
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                    }
+                }
+                temp.style.backgroundColor = "#f0f0f0";
+                temp = buttons[count];
+                buttons[count].style.backgroundColor = "black";
+                inter = setInterval(autoSlide, 4000);
+                setTimeout(function () {
+                    arrowButtonCheck = true;
+                }, 500);
+            }
+        });
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>name을 이용한 선택</title>
+</head>
+
+<body>
+    <h1>name 속성을 이용한 선택</h1>
+    <!-- form태그에 name속성의 값으로 form태그의 객체로 사용가능하다 (form태그에 한해서) -->
+    <form name="joinForm">
+        <div>
+            <input type="text" name="id" placeholder="아이디" value="hds1234">
+        </div>
+        <div>
+            <input type="password" name="pw" placeholder="비밀번호" value="1234">
+        </div>
+        <div>
+            <input type="checkbox" name="language" value="java" checked="checked"> JAVA
+            <input type="checkbox" name="language" value="c"> C
+            <input type="checkbox" name="language" value="python"> Python
+        </div>
+    </form>
+</body>
+<script>
+    // name속성명(key)의 값이 language인 input태그들을 가져옴
+    const checkboxes = document.getElementsByName("language");
+    // console.log(checkboxes);
+
+    // input태그의 checked프리퍼티를 false로 바꿔준다.
+    checkboxes.forEach(checkbox => {
+        console.log(checkbox);
+        checkbox.checked = false;
+    });
+
+    // HTML 태그에 checked 속성을 부여하면, js checked 프로퍼티를 false로 설정해도
+    // checked 속성이 HTML 요소에 남아있다.
+    // 따라서 체크 여부를 검사할 때에는 js 프로퍼티로 검사하는 것이 정확하다.
+    checkboxes.forEach(checkbox => {
+        // getAttribute checked속성의 값을 가져온다
+        console.log(checkbox.getAttribute("checked"));
+        console.log(checkbox.checked);
+    });
+
+    // // 방법1
+    // 사용자가 입력한 아이디와 패스워드를 콘솔에 출력한다.
+    console.log(joinForm.id.value);
+    console.log(joinForm.pw.value);
+
+    // // 방법2
+    // const id = document.getElementsByName("id");
+    // const pw = document.getElementsByName("pw");
+
+    // console.log(id[0].value);
+    // console.log(pw[0].value);
+
+</script>
+
+</html>

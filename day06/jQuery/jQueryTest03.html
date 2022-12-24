@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 체크박스</title>
+</head>
+<body>
+    <form action="" name="myForm">
+        <div>
+            <label>
+                서비스 이용약관 동의
+                <input type="checkbox" name="term1" class="term">
+            </label>
+        </div>
+        <div>
+            <label>
+                광고 수신 동의
+                <input type="checkbox" name="term2" class="term">
+            </label>
+        </div>
+        <div>
+            <label>
+                개인 정보 이용약관 동의
+                <input type="checkbox" name="term3" class="term">
+            </label>
+        </div>
+    </form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    // 클래스명이 .term인 input태그 다 가져옴
+    var $inputs = $(".term");
+    // jQuery는 프로퍼티에 접근하려면 prop을 사용해야 한다.
+    // 첫 번째 체크박스 상태를 true로 바꾼다.
+    $inputs.eq(0).prop('checked', true);
+    // 밑에도 동일한 방법이지만 대괄호로 접근하면 js객체가 되기때문에 앞에 $를 붙여
+    // jquery객체로 만들어준다.
+    $($inputs[1]).prop('checked', true);
+
+    // 값을 변경할 거면 prop을 확인 할거면 is
+    $inputs.on("click", function(){
+        // this는 JS이다.
+        // is : 를 사용하여 전달한 속성값이 있다면 true를 리턴한다.
+        console.log($(this).is(":checked"));
+    });
+
+</script>
+</html>

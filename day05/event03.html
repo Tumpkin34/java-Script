@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첨부파일 썸네일</title>
+    <style>
+        label[for='attach'] div {
+            width: 150px;
+            height: 150px;
+            background-image: url('img/attach.png');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <label for="attach">
+        <div></div>
+    </label>
+    <input type="file" id="attach" style='display:none;'>
+</body>
+<script>
+    const file = document.querySelector("input[type='file']");
+    const thumbnail = document.querySelector("label[for='attach'] div");
+    file.addEventListener("change", function(e){
+        // console.log(e.target.files[0]);
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function(e){
+            // console.log(e.target.result);
+            let url = e.target.result;
+            // 이미지 파일인지 아닌지 검사하여 이미지 파일이 아닐 경우 원래 attach.png 이미지로 변경
+            if(url.includes('image')){
+                thumbnail.style.backgroundImage = "url('" + url + "')";
+            }else{
+                thumbnail.style.backgroundImage = "url('img/attach.png')";
+            }
+        }
+    });
+</script>
+</html>

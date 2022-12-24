@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        월화수목금토일
+        ---------------------(hr)
+        000은 출근
+
+        사용자에게 요일을 입력받고 월~목은 출근, 다른 날은 휴일을 출력한다.
+        요일은 "월", "화", ... 형식으로 입력받는다.
+     -->
+    <p>월화수목금토일</p>
+    <hr>----------------------------------------
+</body>
+<script>
+    let day = prompt("요일을 입력해주세요 예:월,화,수,...");
+
+    function go_and_lest (day){
+        document.write("<br>");
+        let all_days = ["월","화","수","목","금","토","일"];
+        let days = ["월","화","수","목"];
+        let states = 0;
+
+        for(let i = 0; i < all_days.length; i++){
+            if(all_days[i]==day){
+                states = 1;
+            }
+        }
+        if(states == 0){
+            document.write("예제를 확인해주세요");
+            return;
+        }
+        states = 0;
+        for(let i = 0; i < days.length; i++){
+            if(days[i]==day){
+                states = 1;
+            }
+        }
+        if(states == 1){
+            document.write("출근");
+            return;
+        }
+        document.write("휴일");
+    }
+
+    go_and_lest(day);
+
+</script>
+
+</html>

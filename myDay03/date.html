@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date()</title>
+</head>
+
+<body>
+    <h3>방문 시간에 따라 변하는 배경</h3>
+    <hr>
+    <!-- 방문 시간의 초가 짝수일 때와 홀수일 때의 배경색으로 변경시킨다. -->
+    <div>안녕
+
+    </div>
+</body>
+<script>
+    // Date객체화
+    var now = new Date();
+    // 현재 초 가져옴
+    var sec = now.getSeconds();
+    // 현재 초가 2의 배수이면
+    if (sec % 2 == 0) {
+        // 바탕을 회색으로 바꿈(사실 body태그는 document의 프리퍼티였음)
+        document.body.style.background = 'gray';
+    }
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자를 이용한 선택</title>
+</head>
+<body>
+    <h1>CSS 선택자를 이용한 선택</h1>
+    <p>첫 번째 단락이에요!</p>
+    <p>두 번째 단락이에요!</p>
+    <ul>
+        <li class="odd">김치찌개</li>
+        <li class="even">똥남궁</li>
+        <li class="odd">마라탕</li>
+        <li class="even">떢볶이</li>
+        <li class="odd">돈까스</li>
+    </ul>
+</body>
+<script>
+    // 첫 번째 p태그를 가져온다
+    const p = document.querySelector("p");
+    // innerHTML은 값을 가져올 수도 값을 수정할 수도 있다.
+    console.log(p.innerHTML);
+    p.innerHTML = "수정된 단락이에요!";
+    
+    // li태그중 속성값으로 odd를 가지고 있는 li태그를 배열로 저장
+    // const liOdd = document.querySelectorAll("li.odd");
+    // li태그중 속성값으로 even를 가지고 있는 li태그를 배열로 저장
+    // const liEven = document.querySelectorAll("li.even");
+
+    // console.log(liOdd);
+    // console.log(liEven);
+
+    // liOdd.forEach(li => {
+        // li태그(홀수)의 style인 color를 purple로 변경
+        //     li.style.color = "purple";
+        // });
+        
+        // // 짝수는 글자색을 마젠타로 변경
+        // liEven.forEach(li => {
+            // li태그(짝수)의 style인 color를 purple로 변경
+    //     li.style.color = "magenta";
+    // });
+
+    // 위 로직을 딱 한 줄로 변경
+    // li다 가져옴 (5개)
+    const lists = document.querySelectorAll("li");
+    // console.log(lists);
+    // 가져온 li의 style인 color를 class(속성명)의 값이 odd라면 purple로 아니면 magenta로 칠한다
+    lists.forEach(list => list.style.color = list.getAttribute("class") == 'odd' ? 'purple' : 'magenta');
+
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 전체 동의</title>
+</head>
+<body>
+    <form action="" name="myForm">
+        <div>
+            <label>
+                전체 동의
+                <input type="checkbox" name="term1" class="all">
+            </label>
+        </div>
+        <div>
+            <label>
+                서비스 이용약관 동의
+                <input type="checkbox" name="term1" class="term">
+            </label>
+        </div>
+        <div>
+            <label>
+                광고 수신 동의
+                <input type="checkbox" name="term2" class="term">
+            </label>
+        </div>
+        <div>
+            <label>
+                개인 정보 이용약관 동의
+                <input type="checkbox" name="term3" class="term">
+            </label>
+        </div>
+    </form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    // 전체동의 체크박스 객체
+    var $all = $(".all");
+    // 일반 체크 박스들 모음
+    var $inputs = $(".term");
+    
+    // 전체동의 체크되면
+    $all.click(function(){
+        // 모든 일반 체크박스 체크
+        $inputs.prop('checked', $(this).is(":checked"));
+    });
+
+// 하나의 약관이라도 해제가 된다면 전체 동의 체크 해제
+// 각 항목이 모두 체크되면 전체 동의 체크
+    $inputs.click(function(){
+        // 접근한 객체의 속성값중 checked가 없으면
+        if(!$(this).is(":checked")){
+            // 전체동의 객체 체크 해제
+            $all.prop('checked', false);
+        }
+        // filter를 통해 안에 checked가 되어있는 객체만 모아서
+        // 해당 객체list의 길이가 3일 경우
+        if($inputs.filter(":checked").length == 3){
+            // 전체동의 객체를 체크
+            $all.prop('checked', true);
+        }
+    })
+
+</script>
+</html>

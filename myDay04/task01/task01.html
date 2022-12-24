@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습</title>
+    <link rel="stylesheet" href="task01.css">
+</head>
+
+<body>
+    <div class="fullScreen">
+        <header>
+            <div class="headerTextBox">
+                <span>요금표</span>
+            </div>
+        </header>
+        <main>
+            <table border="1">
+                <tr class="cellHeader">
+                    <td>구분</td>
+                    <td>요금</td>
+                </tr>
+                <tr style="background: white">
+                    <td>아동</td>
+                    <td>무료</td>
+                </tr>
+                <tr style="background: white">
+                    <td>청소년</td>
+                    <td>2000원</td>
+                </tr>
+                <tr style="background: white">
+                    <td>성인</td>
+                    <td>5000원</td>
+                </tr>
+            </table>
+        </main>
+        <div class="inputBox">
+            <form name="joinForm">
+                <div class="checkBox-box">
+                    <input type="text" id="myInput">
+                    <input type="button" value="확인" onclick="getInputValue()">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="task01.js"></script>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드 배너</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- section : 시멘틱태그 -->
+    <section class="container">
+        <!-- &lt : 왼쪽 화살표 -->
+        <!-- 이전버튼 -->
+        <div class="arrow left prev">&lt;</div>
+        <!-- 메인 배너 -->
+        <div class="banner">
+            <div><img src="banner/001.png"></div>
+            <div><img src="banner/002.png"></div>
+            <div><img src="banner/003.png"></div>
+            <div><img src="banner/004.png"></div>
+            <div><img src="banner/005.png"></div>
+            <div><img src="banner/006.png"></div>
+        </div>
+        <!-- &gt : 오른쪽 화살표 -->
+        <!-- 다음 버튼 -->
+        <div class="arrow right next">&gt;</div>
+        <!-- 선택 버튼 -->
+        <div class="buttons">
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </div>
+    </section>
+</body>
+<script>
+    // 4초마다 (setInterval(..., 4000)) autoSlide메소드가 실행된다.
+    // 식별번호를 리턴하기 때문에 변수에 저장한다. (후에 메소드를 종료시키거나 다시 실행 시킬 때 사용된다.)
+    var inter = setInterval(autoSlide, 4000);
+    // 클래스이름이 banner인 div태그를 객체화한다.
+    const banner = document.querySelector("div.banner");
+    // 클래스명이 buttons라는 div태그 안에 button태그들을 전부 가져온다.
+    const buttons = document.querySelectorAll("div.buttons button");
+    // 
+    var count = 0, temp = buttons[count];
+
+    // div객체들을 만들어 준다.
+    // 가장 마지막에 첫번째 배너를 이어 붙인다. 슬라이드 모션이 자연스럽게 1번으로 돌아가게 하기 위함
+    let firstDiv = document.createElement("div");
+    // 가장 처음에 마지막번째 배너를 이어 붙인다. 이전버튼 클릭시 슬라이드 모션이 자연스럽게 6번으로 돌아가게 하기 위함
+    let lastDiv = document.createElement("div");
+
+    // 위에서 만든 div객체에 이미지(banner/001.png) 태그를 넣어준다.
+    firstDiv.innerHTML = `<img src="banner/001.png">`;
+    // banner객체인 div에 막내자식으로 위에 만든 div객체를 넣어준다.
+    banner.appendChild(firstDiv);
+
+    // 위에서 만든 div객체에 이미지(banner/006.png) 태그를 넣어준다.
+    lastDiv.innerHTML = `<img src="banner/006.png">`;
+    // 클래스명이 banner인 div태그의 첫째(document.querySelector("div.banner div")) 앞에 lastDiv객체 삽입 (insertBefore(lastDiv)
+    banner.insertBefore(lastDiv, document.querySelector("div.banner div"));
+    // 슬라이드가 첫 번째 부터 시작하니까 첫 번째 버튼에 검정칠
+    buttons[count].style.backgroundColor = "black";
+    // 이미지 순서가 6 - 1 - 2 - 3 - 4 - 5 - 6 - 1 이기 때문에 첫 이미지인 1번은 보여주기위해서는
+    // -90vw를 주어 첫 6번 다음인 1을 보이게끔 한다.
+    // 첫번째 배너는 6번이니까 왼족으로 한번 밀어서 1번 보이게함
+    banner.style.transform = "translate(-90vw)";
+
+    // 무한 반복
+    // 자동으로 슬라이드 됨
+    // 첫 화면에서는 첫번째 배너가 보이지만 이 함수가 실행된 는 순간에는 2부터 시작함
+    function autoSlide() {
+        // 배너 객체에 이미지가 바뀔 때 0.5초에 걸쳐 슬라이드 되는 스타일을 적용한다.
+        // 배너가 이동해야 할 때에는 0.5초
+        banner.style.transition = "transform 0.5s"
+
+        // 마지막 슬라이드일 때
+        // 6번 뒤에 1번 배치시킨다.
+        // 6번에서 1번으로 슬라이드 진행
+        // 0s를 줘서 원래 1번 위치로 이동(슬라이드 효과는 안보임)
+
+        // 반복을 돌 때 마다 이미지또는 버튼에 이미지의 인덱스번호라던가 버튼의 번호로 쓰인다.
+        // 그러므로 증가 (증가 안시키면 매번 같은 이미지 같은 버튼)
+        count++;
+        if (count == 6) {// count가 6이라면 이미지6을 가르킨다.
+            // 오토로 슬라이드될 때는 다음으로 넘어가면 전에 있던 버튼의 색을 다시 하얀색으로 바꿔준다.
+            buttons[count - 1].style.backgroundColor = "#f0f0f0";
+            // 7번째 이미지인 (이미지1) 로 이동
+            banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+            // 슬라이드가 다 넘어갈 때 까지 기다린다.
+            setTimeout(function () {
+                // transform 0s를 통해 7번 이미지에서 1번 이미지로 넘어갈 때 슬라이드 효과를 없애준다.
+                banner.style.transition = "transform 0s"
+                // 1번 이미지에 해당하는 이미지1로 이동
+                banner.style.transform = "translate(-90vw)";
+                // 슬라이드가 다 넘어가는 0.5초간 기다린다.
+            }, 500);
+            // 카운트를 다시 0으로 돌린다.(8번 이미지부터는 없기 때문에 계속 늘어나면 곤란하다.)
+            count = 0;
+            // 이미지1로 이동했으니 0번째 버튼을 칠해준다.
+            buttons[count].style.backgroundColor = "black";
+        } else {
+            // 전이미지에 해당하는 버튼은 하얀색으로 칠한다.
+            // 처음에는 첫번쨰 배너가 선택되어 있기 때문에 다음으로 넘어가면서 이전 배너부분의 버튼 색을 돌려준다.
+            buttons[count - 1].style.backgroundColor = "#f0f0f0";
+            // 현재 카운트인 현재이미지에 맞는 버튼의 색을 검은색으로 칠한다.
+            // 이번에 보여질 배너부분의 버튼 색을 검은색으로 돌려준다.
+            buttons[count].style.backgroundColor = "black";
+            // 반복을 돌며 증가한 count에 맞는 이미지로 이동
+            // 왼쪽으로 -90 * (count + 1) 만큼 이동한다.
+            // 왜 count에 +1을 한 것인가? : 가장 앞에 6번 배너부터 시작되기 때문
+            banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+        }
+        // 후에 버튼으로 이동하거나 할 때는 바로 전버튼이 내가 전에있던 이미지가 아닐 수 있기 때문에
+        // 전에 있던 버튼의 주소를 저장하여 지우기위해 temp저장
+        // 초기화할 버튼 객체담음
+        temp = buttons[count];
+    }
+
+
+    // 원하는 번호의 배너 보기
+    // 각 버튼마다 클릭 이벤트 적용
+    // 버튼을 광클하지 못하게 막아주는 FLAG
+    var numberButtonCheck = true;
+    buttons.forEach((v, i, btns) => {
+        // btns[i]가 결국 v 일 텐데 btns를 쓴 이유를 모르겠다.
+        // 각 버튼에 click이벤트를 걸어줌
+        btns[i].addEventListener("click", function () {
+            // 마지막 이미지에서 transform을 0초로 바꿨기 때문에 다시 슬라이드가 넘어가기 1초 까지 transform은 0초기 때문에
+            // 클릭한 경우 다시 0.5초로 바꿔준다.
+            // 얍삽한 방법으로 인해 0s로 변할 수 있기 떄문에 무조건 0.5s로 설정하고 시작
+            banner.style.transition = "transform 0.5s"
+            // 사용자의 광클을 막는다. 
+            if (numberButtonCheck) {// 0.5초가 지나고 나서 클릭했거나 처음 클릭하거나
+                // 현재는 false이지만 마지막 메소드를 통해서 true로 바꿀 수 있다.
+                numberButtonCheck = false;// 누르자마자 바로 false
+                // 무한 반복중이던 inter(무한슬라이드)를 멈춰준다.
+                clearInterval(inter);// autoSlide 타이머 제거, 동시에 돌아가면 안됨.
+                count = i;// 클릭한 버튼의 인덱스를 배너의 번호로 설정
+                // 이전에 머물렀던 이미지에 해당하는 버튼을 다시 흰색으로 바꾼다.
+                temp.style.backgroundColor = "#f0f0f0";//이전에 적용된 버튼의 배경을 원상복구
+                // 밑에도 사실 v로 접근해도 될거같다 buttons[count] == v이기 때문에
+                // 암튼 해당 버튼도 검은색으로 칠한다.
+                buttons[count].style.backgroundColor = "black";//클릭한 버튼의 배경을 검은색
+                // banner객체를 클릭한 버튼에 해당 하는 이미지가 보이게 이동한다.
+                banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";// 클릭한 버튼의 인덱스번호로 배너번호로 이동
+                // 머물렀던 버튼의 주소를 temp에 저장
+                temp = buttons[count];//지금 선택된 번호객체 담아주기
+                // 멈췄던 inter를 다시 실행한다.
+                inter = setInterval(autoSlide, 4000);//버튼 클릭 다했으니까 auto slide다시 작동
+                // 0.5초 후 check를 true로 바꾼다. 0.5초 전에 사용자가 아무리 광클을 해도 이코드를 감싸는
+                // if문은 false이기 때문에 실행 될 수 없다.
+                // 클릭하고 나서 할 거 다 하고 0.5초 후체 FLAG를 true로 변경
+                // 0.5초 안에는 다시 클릭 못하게 막아주기
+                setTimeout(function () {
+                    numberButtonCheck = true;
+                }, 500);
+            }
+        });
+    });
+
+    // 이전 버튼, 다음 버튼 구현
+    // 각 꺽쇠들이 있는 div태그들 객체화
+    const arrows = document.querySelectorAll("div.arrow");
+    // 밑에 광클 막는 flag
+    var arrowButtonCheck = true;
+    // 꺽쇠객체 2개로 각 클릭 메소드를 만든다.
+    arrows.forEach(arrow => {
+        // 꺽쇠객체에 클릭이라는 이벤트가 발생했을 때 함수 실행
+        arrow.addEventListener("click", function () {
+            // 위에 버튼과 마찬가지로 자동슬라이드에서 마지막 이미지가 넘어갈 때 transfroms을 0으로 바꾸고 다음 반복이 실행 될 때 까지
+            // 1초의 시간동안 transform은 0초이기 때문에 이시간 동안 광클을 하면 1초동안 슬라이드가 안된다.
+            if (arrowButtonCheck) {
+                // 여기서 false로 바꾸고 true가 될 때 까진 0.5초가 걸리기 때문에 광클을 막을 수 있다.
+                arrowButtonCheck = false;
+                // 무한슬라이드 종료
+                clearInterval(inter);
+                // 클릭이 되었다면 더이상 transform이 0일 필요가 없기 때문에 다시 0.5초
+                banner.style.transition = "transform 0.5s"
+                // 가져온 꺽쇠div객체의 두 번째 클래스 이름을 저장 *예 : <div class="arrow left prev"> 에서 2번 인덱스인 prev 가져옴
+                let arrowType = arrow.classList[2];
+                // 꺽쇠 div객체의 2번 인덱스의 클래스가 prev라면 실행
+                // 왼쪽 화살표
+                if (arrowType == 'prev') {
+                    // 왼쪽으로 이동은 count가 -가 되는 것이다.
+                    console.log(count);
+                    count--;
+                    // 0번째 이미지(이미지6)에서 (1번째 이미지(이미지1)에서 왼쪽으로 한번 누르면 들어오게 될 곳)
+                    if (count == -1) {
+                        banner.style.transform = "translate(0vw)";
+                        setTimeout(function () {
+                            banner.style.transition = "transform 0s"
+                            banner.style.transform = "translate(-540vw)"; // 0 = 0(이미지6), 90 = 1(이미지 1), 180 = 2(이미지2), 270 = 3(이미지3), 360 = 4(이미지4), 450 = 5(이미지5), 540 = 6(이미지6)
+                        }, 500);
+                        // 무한슬라이드 함수가 실행되면 count++을 해주고 count+1이 있기 때문에 count = 5, 그럼 7번째 이미지(이미지1)로 간다.
+                        count = 5;
+                    } else {
+                        console.log(count + 1);
+                        console.log(90 * (count + 1));
+                        // 무한슬라이드에서 count가 3이라면 이미지4를 보여주기 때문에 
+                        // 위에서 --된 count는 2이고 밑에 코드로 이미지3을 보여준다
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                    }
+                    // 오른쪽 화살표
+                } else {
+                    count++;
+                    // 이미지6이라면
+                    if (count == 6) {
+                        // 다음 이미지인 7번째 이미지(이미지1)로 이동
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                        // 0.5초후 1번째 이미지(이미지1)로 이동 하는 함수
+                        setTimeout(function () {
+                            // 슬라이드는 없앰
+                            banner.style.transition = "transform 0s"
+                            // 1번째 이미지(이미지1)로 이동
+                            banner.style.transform = "translate(-90vw)";
+                        }, 500);
+                        // 여기서 count를 0으로 해주면 무한슬라이드에서 count++되고 이미지에서 +1이 또 붙어서 이미지2로 이동함
+                        count = 0;
+                    } else {
+                        // 오른쪽으로 한칸(위에서 count++해줬기 때문에) 이동
+                        banner.style.transform = "translate(-" + 90 * (count + 1) + "vw)";
+                    }
+                }
+                // 머물렀던 버튼의 배경은 하얀색으로 해준다.
+                temp.style.backgroundColor = "#f0f0f0";
+                // 위에서 화살표를 통해 나온 count의 버튼을 저장한다.
+                temp = buttons[count];
+                // 위치한 이미지에 해당하는 버튼에 검은색
+                buttons[count].style.backgroundColor = "black";
+                // 멈췄던 무한슬라이드 실행
+                inter = setInterval(autoSlide, 4000);
+                // 0.5초 후에 다시 클릭하여 if문 실행 가능
+                setTimeout(function () {
+                    arrowButtonCheck = true;
+                }, 500);
+            }
+        });
+    });
+
+</script>
+
+</html>

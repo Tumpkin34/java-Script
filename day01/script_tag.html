@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>script 태그 안에서 코드 작성</title>
+</head>
+<body>
+    <h3>마우스를 올려보세요</h3>
+    <hr>
+    <!-- 스크립트 태그 안에 function(함수)를 만들어 사용한다. -->
+    <!-- this 태그 안에 갇혀있으니까 가둔 태그의 주소가 this다 -->
+    <img src="images/grandma.png" onmouseover="over(this);" onmouseout="out(this)">
+</body>
+<script>
+    // img태그 주소를 넘겨 받고
+    function over(obj){
+        // img태그에 src를 변경하겠다
+        obj.src = "images/grandfa.png";
+    }
+
+    function out(obj){
+        obj.src = "images/grandma.png";
+    }
+</script>
+</html>

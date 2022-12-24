@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        pr("%", 5);
+        결과 : %%%%%
+
+        위의 결과가 나오는 함수를 선언하여 사용한다.
+        출력은 콜백함수를 사용한다.
+     -->
+</body>
+<script>
+    globalThis.result = "";
+
+    function pr(char, number, callback) {
+        for (let i = 0; i < number; i++) {
+            result += char;
+        }
+        if (callback) {
+            callback(result);
+        }
+    }
+    pr("6^", 7, function (result) {
+        document.write(result);
+    });
+</script>
+
+</html>

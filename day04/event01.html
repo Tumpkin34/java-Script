@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 이벤트</title>
+</head>
+<body>
+    <h3>CSS 스타일 동적 변경</h3>
+    <hr>
+    <p>
+        죄송합니다.
+    </p>
+    <input type="button" value="스타일 변경">
+</body>
+<script>
+    // input태그를 객체화
+    const input = document.querySelector("input[type='button']");
+    // p태그를 객체화
+    const p = document.getElementsByTagName("p")[0];
+
+    // input태그가 클릭이 되었을 때
+    input.addEventListener("click", function(){
+        // 버튼 색은 노랑
+        this.style.background = "yellow";
+        // p태그의 스타일을 바꾼다
+        p.style.fontSize = "30px";
+        p.style.border = "3px dotted magenta";
+        p.style.width = "10vw";//vw : %와 같음
+    });
+</script>
+</html>

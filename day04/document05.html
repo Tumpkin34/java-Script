@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체를 동적으로 생성, 삽입, 삭제</title>
+</head>
+
+<body>
+    <p id = "temp">DOM 트리에 동적으로 객체를 삽입할 수 있다.</p>
+    <p>createElement("태그명"), appendChild("태그객체"), removeChild("태그객체")</p>
+    <p>위 3개의 메소드를 이용해서 새로운 객체를 생성, 삽입 삭제한다.</p>
+    <!-- href를 클릭하면 메소드가 실행 된다 -->
+    <a href="javascript:createDIV()">DIV 생성</a>
+</body>
+<script>
+    function createDIV() {
+        // div객체를 만듬
+        const newDiv = document.createElement("div");
+        // 그 객체에 밑의 텍스트를 입력
+        newDiv.innerHTML = "새로 생성된 div입니다.";
+        // 노랑색으로 칠함
+        newDiv.style.backgroundColor = 'yellow';//<div style="background-color: yellow;">새로 생성된 div입니다.</div>
+        // body태그의 자식으로 노드를 작성함
+        // 다른 태그들도 객체로 만들어서 추가 할 수 있음
+        // appendChild() :부모의 자식요소(막내)로 추가된다.
+        // prepend() : 부모의 자식요소(첫째)로 추가된다.
+        // insertBefore() : 워하는 자식요소의 앞에 추가된다.
+        document.body.appendChild(newDiv);
+
+        // 노드를 클릭시
+        newDiv.onclick = function () {
+            // 이메소드에 접근한 객체의 부모객체의 이메소드에 접근한 메소드의 주소를 삭제한다.
+            this.parentElement.removeChild(this);
+        }
+    }
+</script>
+
+</html>

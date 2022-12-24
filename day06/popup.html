@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팝업</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- index.html에서 새 창으로 연 페이지는  -->
+    <!-- 열려있는 창에서(opener) 부모의 객체(부모 창)를 가져와서(parent) location이라는 프로퍼티에 원하는 경로를 써주면 URL이 이동된다.-->
+    <!-- 부모 창의 URL(location = )을 event.html로 바꾸겠다.  -->
+    <!--  window.close(); : 내 창을 닫아주면서 이동한다. -->
+    <a href="javascript:opener.parent.location='event.html';window.close();">
+        <img src="팝업.png">
+    </a>
+</body>
+</html>

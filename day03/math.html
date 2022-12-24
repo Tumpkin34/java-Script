@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math를 이용한 구구단 연습</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Math.floor(Math.random() * n) : 0 ~ n-1의 난수
+    function getRandomInt(range){
+        // 자바스크립트에서 random은 0.???...형식으로 뽑는다
+        // Math.random*range라면 0 부터 range-1까지의 값이 나오고
+        // floor로 실수부를 잘라준다.
+        var result = Math.floor((Math.random)*(range+1));
+        // 단 부분이냐 곱 부분이냐를 판단하여
+        // 단 부분은 2단 부터고 곱 부분은 1부터이기 때문에
+        // 단 부분이 위에 result에 2를 더하고
+        // (0단은 말이 안되니까 0+2단 으로 만들어준것 임)
+        // 곱 부분이라면(range가 8이라면) 1을 더해
+        // (0이 나왔을 경우 어떤수 * 0을 막기위해 0+1)
+        result += range == 8 ? 1 : 2;
+        return result;
+    }
+
+    // 출력 할 문구이자 eval로 계산할 문자열
+    var question = getRandomInt(7) + "*" + getRandomInt(8);
+    // 위의 문자열을 계산한다
+    var answer = eval(question);
+    // 프롬프트를 통해 문구를 출력하고 사용자가 입력한 답을 받아옴
+    var myAnswer = prompt(question, 0);
+
+    //eval로 계산한 값과 사용자가 입력한 값이 같으면
+    if(answer == myAnswer){
+        document.write("<h1>정답!</h1>");
+        // 다르면
+    }else{
+        document.write("<span style = 'font-size:3px;'>오답</span>")
+    }
+</script>
+</html>

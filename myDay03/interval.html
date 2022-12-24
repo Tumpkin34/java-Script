@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval()</title>
+</head>
+<body>
+    <div id = "wrap"></div>    
+</body>
+<script>
+    // setInterval(callback, millis) : 전달한 밀리초마다 callback함수 실행(while문처럼 작동하는데 while로는 안됨)
+    // clearINterval(setInterval함수) : 전달한 함수 종료
+    var inter = setInterval(function(){//리턴으로 이 함수의 식별번호를 넘겨준다 
+        // html에서 wrap이라는 객체 찾음
+        const div = document.getElementById('wrap');
+        // 
+        const h2 = document.createElement('h2');
+        h2.innerHTML = "황지수";
+        // div안에 h2생성 (appendChild : 부모노드안에 자식노드 생성)
+        div.appendChild(h2)
+    },1000)
+    setTimeout(function(){
+        clearInterval(inter);
+    },5000)
+</script>
+</html>

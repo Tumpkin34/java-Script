@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+}
+
+thead {
+    background-color: yellow;
+}
+
+table{
+    width: 45%;
+    margin: 0 auto;
+}
+
+fieldset{
+    width: 45%;
+    margin: 0 auto;
+}
