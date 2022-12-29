@@ -36,7 +36,7 @@ HTML 태그의 속성이나 콘텐츠, CSS 속성 값을 변경하여<br><br>
   처리하는 코드를 등록하는 리스너 속성이 있다.<br>
 
 2. <script></script> 내에 작성<br>
-  <head></head> , <body></body> , body택 밖 등 어디든 들어갈 수 있다.<br>
+  \<head></head> , \<body></body> , body 밖 등 어디든 들어갈 수 있다.<br>
   웹 페이지 내에서 여러 번 작성할 수 있다.<br>
 
 3. 자바스크립트 파일에 작성<br>
